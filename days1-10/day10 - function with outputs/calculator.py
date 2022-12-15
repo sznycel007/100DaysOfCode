@@ -1,6 +1,4 @@
 import calc_logo
-print(calc_logo.logo)
-
 
 def add(n1, n2):
     return n1 + n2
@@ -24,23 +22,36 @@ operations = {
     "*": multiply,
     "/": divide
 }
+def calculator():
+    print(calc_logo.logo)
 
-# function = operations["+"]
-# print(function(3, 2))
+    num1 = float(input("What's the first number? "))
+    for key in operations:
+        print(key)
+    should_continue = True
+    # function = operations["+"]
+    # print(function(3, 2))
+    while should_continue:
+        operation_symbol = input("Pick an operation: ")
+        num2 = float(input("What's the second number? "))
+        function = operations[operation_symbol]
+        answer = function(num1, num2)
 
-num1 = int(input("What's the first number? "))
-num2 = int(input("What's the second number? "))
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
 
-for key in operations:
-    print(key)
+        if input(f"Type 'y' to continue calculating with {answer}, or type 'n' to start a new calculation.: ") == "y":
+            num1 = answer
+        else:
+            should_continue = False
+            calculator()
 
-operation_symbol = input("Pick an operation from the line above: ")
+calculator()
 
-function = operations[operation_symbol]
 
-answer = function(num1, num2)
 
-print(f"{num1} {operation_symbol} {num2} = {answer}")
+
+
+
 
 
 
