@@ -15,11 +15,15 @@ from replit import clear
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
+# function which includes the drawing of further cards
+
 
 def getAnotherPick(player):
     pick = random.choice(cards)
     player.append(pick)
     return player
+
+# function which creates initial board (two cards per player)
 
 
 def collectInitialDeck(player):
@@ -27,6 +31,11 @@ def collectInitialDeck(player):
         pick = random.choice(cards)
         player.append(pick)
         return player
+
+# function which covers part of the programme logic (checks the board before collecting the cards)
+# depending on the logical return value of the function, the loop [isBlackJackLoop] will be stopped or not.
+# This is covered under isBlackJackLoop = isblackjack()
+# isBlackJackLoop takes the logical return of the result of the function
 
 
 def isblackjack():
@@ -44,8 +53,8 @@ def isblackjack():
 
 
 gamestart = True
-
 while gamestart:
+
     playerDeck = []
     pcDeck = []
 
@@ -55,22 +64,27 @@ while gamestart:
     else:
         clear()
         print(art.logo)
+
+        # calling collectInitialDeck function with player playerDeck parameter which is a playerDeck (table)
         collectInitialDeck(player=playerDeck)
         player1 = collectInitialDeck(playerDeck)
 
+        # calling collectInitialDeck function with player pcDeck parameter which is a pcDeck (table)
         collectInitialDeck(player=pcDeck)
         player2 = collectInitialDeck(pcDeck)
 
         isBlackJackLoop = False
-
         while isBlackJackLoop is False:
-
+            # check if after collectInitialDeck we do not have two Ace cards scoring 11 points
+            # if so, change one of them to 1 point
             if player1[0] == 11 and player1[1] == 11:
                 player1[1] = 1
 
             if player2[0] == 11 and player2[1] == 11:
                 player2[1] = 1
-
+            # taking a logical value from the function (True/False)
+            # if it's True, break this loop and make print from isblackjack function
+            # and from else section about finals scores
             isBlackJackLoop = isblackjack()
 
             if not isBlackJackLoop:
