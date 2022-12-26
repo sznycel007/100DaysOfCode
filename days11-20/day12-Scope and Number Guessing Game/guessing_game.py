@@ -3,11 +3,12 @@ import art
 
 print(art.logo)
 
-# the player's possible attempts depend on the level of play
+
 print("Welcome to the Number Guessing Game!")
 print("I'm thinking of a number between 1 and 100")
 
-randomNumber = random.choice(range(1, 101))
+randomNumber = random.randint(1, 101)
+
 print(f"Psst, the correct answer is {randomNumber}")
 
 level = input("Choose a difficulty. Type 'easy or 'hard': ")
